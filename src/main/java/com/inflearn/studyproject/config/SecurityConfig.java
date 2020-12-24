@@ -23,6 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring()
-                .requestMatchers(PathRequest.toStaticResources().atCommonLocations()); //resources 하위의 static 폴더의 이미지들을 로그인 없이 가져올 수 있도록 설정함
+                .mvcMatchers("/node_modules/**") //빌드시 생성되는 static 폴더 하위의 node_modules도 로그인 없이 사용할 수 있도록 설정함
+                .requestMatchers(PathRequest.toStaticResources().atCommonLocations()); //resources 하위의 static 폴더의 이미지, css 등등을 포함한 자원들을 로그인 없이 가져올 수 있도록 설정함
     }
 }
